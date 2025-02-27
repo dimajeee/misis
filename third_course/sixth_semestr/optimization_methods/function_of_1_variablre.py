@@ -6,7 +6,7 @@ def f(x):
     return np.sin(7*x) + 0.5*np.cos(5*x) + 0.3*np.sin(3*x)
 
 # Генерируем значения x
-x = np.linspace(-2*np.pi, 2*np.pi, 1000)
+x = np.linspace(0, 2, 1000)
 y = f(x)
 
 # Строим график
