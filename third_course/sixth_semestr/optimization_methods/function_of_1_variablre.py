@@ -3,15 +3,15 @@ import matplotlib.pyplot as plt
 
 # Определяем функцию с множеством экстремумов
 def f(x):
-    return np.sin(7*x) + 0.5*np.cos(5*x) + 0.3*np.sin(3*x)
+    return (x ** 2 - 1) * np.e ** np.cos(3 * x) + x
 
 # Генерируем значения x
-x = np.linspace(0, 2, 1000)
+x = np.linspace(-1, 5, 1000)
 y = f(x)
 
 # Строим график
 plt.figure(figsize=(10, 5))
-plt.plot(x, y, label=r'$f(x) = \sin(7x) + 0.5\cos(5x) + 0.3\sin(3x)$')
+plt.plot(x, y, label=r'$f(x)$')
 plt.axhline(0, color='black', linewidth=0.5, linestyle='--')
 plt.axvline(0, color='black', linewidth=0.5, linestyle='--')
 plt.legend()
