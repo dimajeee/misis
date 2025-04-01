@@ -12,7 +12,7 @@ print(count)
 
 # 2.	Определить наибольшее значение сомножителя n, для которого произведение р = 1 · 4 · 7 ·...· n не превышает L = 30 000.
 def getadd3fact(x):
-    fact = 1;
+    fact = 1
     for i in range(1, x + 1, 3):
         fact *= i
     return fact

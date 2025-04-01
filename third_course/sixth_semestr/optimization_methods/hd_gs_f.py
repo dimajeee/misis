@@ -5,6 +5,11 @@ def f(x):
     return (x ** 2 - 1) * np.e ** np.cos(3 * x) + x
     return np.sin(7*x) + 0.5*np.cos(5*x) + 0.3*np.sin(3*x)
     
+def df(x):
+    # Производная для первой функции
+    return 2*x*np.e**np.cos(3*x) + (x**2-1)*np.e**np.cos(3*x)*(-3*np.sin(3*x)) + 1
+    # Производная для второй функции (раскомментировать если нужно)
+    #return 7*np.cos(7*x) - 2.5*np.sin(5*x) + 0.9*np.cos(3*x)
 
 def bisection_method_min(a, b, tol):
     iterations = 0
@@ -129,57 +134,91 @@ def fibonacci_search_max(a, b, tol):
     return (a + b) / 2, iteration
 
 
-def scanning_method(a, b, n):
-    # Разбиваем отрезок на n равных частей
+def scanning_method_min(a, b, n):
     x_values = np.linspace(a, b, n)
-    
-    # Вычисляем значения функции в точках разбиения
     y_values = f(x_values)
-    
-    # Находим минимальное значение функции
     min_index = np.argmin(y_values)
-    min_x = x_values[min_index]
-    min_y = y_values[min_index]
-    
-    return min_x, min_y
+    return x_values[min_index], y_values[min_index]
+
+def scanning_method_max(a, b, n):
+    x_values = np.linspace(a, b, n)
+    y_values = f(x_values)
+    max_index = np.argmax(y_values)
+    return x_values[max_index], y_values[max_index]
 
 
-# Пример использования
-a = float(input("Введите начало отрезка: "))
-b = float(input("Введите конец отрезка: "))
-to = input("Введите точность: ")
-tol = float(to)
-acc = len(str(to)) - 1 
+def tangent_method_min(x0, tol, max_iter=100):
+    x = x0
+    for _ in range(max_iter):
+        x_new = x - f(x)/df(x)
+        if abs(x_new - x) < tol:
+            return x_new
+        x = x_new
+    return x
 
-min_x, iteration = bisection_method_min(a, b, tol)
-print(f"Минимум функции находится в точке x = {round(min_x, acc)}, Итераций: {iteration}")
+def tangent_method_max(x0, tol, max_iter=100):
+    x = x0
+    for _ in range(max_iter):
+        x_new = x + f(x)/df(x)  # Знак + вместо - для поиска максимума
+        if abs(x_new - x) < tol:
+            return x_new
+        x = x_new
+    return x
 
-min_x, iteration = golden_section_search_min(a, b, tol)
-print(f"Минимум функции находится в точке x = {round(min_x, acc)}, Итераций: {iteration}")
 
-min_x, iteration = fibonacci_search_min(a, b, tol)
-print(f"Минимум функции находится в точке x = {round(min_x, acc)}, Итераций: {iteration}")
+# # Пример использования
+# a = float(input("Введите начало отрезка: "))
+# b = float(input("Введите конец отрезка: "))
+# to = input("Введите точность: ")
+# tol = float(to)
+# acc = len(str(to)) - 1 
 
-# Пример использования
-a = float(input("Введите начало отрезка: "))
-b = float(input("Введите конец отрезка: "))
-to = input("Введите точность: ")
-tol = float(to)
-acc = len(str(to)) - 1 
+# min_x, iteration = bisection_method_min(a, b, tol)
+# print(f"Минимум функции находится в точке x = {round(min_x, acc)}, Итераций: {iteration}")
 
-max_x, iteration = bisection_method_max(a, b, tol)
-print(f"Максимум функции находится в точке x = {round(max_x, acc)}, Итераций: {iteration}")
+# min_x, iteration = golden_section_search_min(a, b, tol)
+# print(f"Минимум функции находится в точке x = {round(min_x, acc)}, Итераций: {iteration}")
 
-max_x, iteration = golden_section_search_max(a, b, tol)
-print(f"Максимум функции находится в точке x = {round(max_x, acc)}, Итераций: {iteration}")
+# min_x, iteration = fibonacci_search_min(a, b, tol)
+# print(f"Минимум функции находится в точке x = {round(min_x, acc)}, Итераций: {iteration}")
 
-max_x, iteration = fibonacci_search_max(a, b, tol)
-print(f"Максимум функции находится в точке x = {round(max_x, acc)}, Итераций: {iteration}")
+# # Пример использования
+# a = float(input("Введите начало отрезка: "))
+# b = float(input("Введите конец отрезка: "))
+# to = input("Введите точность: ")
+# tol = float(to)
+# acc = len(str(to)) - 1 
 
-# Пример использования
+# max_x, iteration = bisection_method_max(a, b, tol)
+# print(f"Максимум функции находится в точке x = {round(max_x, acc)}, Итераций: {iteration}")
+
+# max_x, iteration = golden_section_search_max(a, b, tol)
+# print(f"Максимум функции находится в точке x = {round(max_x, acc)}, Итераций: {iteration}")
+
+# max_x, iteration = fibonacci_search_max(a, b, tol)
+# print(f"Максимум функции находится в точке x = {round(max_x, acc)}, Итераций: {iteration}")
+
+# # Пример использования
+# a = float(input("Введите начало отрезка: "))
+# b = float(input("Введите конец отрезка: "))
+# n = int(input("Введите количество участков разбиения: "))
+# print("\nМетод сканирования:")
+# min_x, min_y = scanning_method(a, b, n)
+# print(f"Минимум функции находится в точке x = {min_x}, f(x) = {min_y}")
+
+
+# Ввод данных
 a = float(input("Введите начало отрезка: "))
 b = float(input("Введите конец отрезка: "))
 n = int(input("Введите количество участков разбиения: "))
-print("\nМетод сканирования:")
-min_x, min_y = scanning_method(a, b, n)
-print(f"Минимум функции находится в точке x = {min_x}, f(x) = {min_y}")
+tol = float(input("Введите точность: "))
+x0 = float(input("Введите начальное приближение для метода касательных: "))
+
+# Поиск минимума
+print("\nПоиск минимума:")
+min_scan_x, min_scan_y = scanning_method_min(a, b, n)
+print(min_scan_x, min_scan_y)
+# Поиск минимума
+print("\nПоиск максимума:")
+max_scan_x, max_scan_y = scanning_method_max(a, b, n)
+print(max_scan_x, max_scan_y)

@@ -16,28 +16,28 @@ def calculation(a, b, h, func1, func2, i = 0):
     return s
  
 
-@lru_cache()
-def func1_s(x, i):
-    return (-1) ** i * x ** (2 * i) / math.factorial(2 * i)
+# @lru_cache()
+# def func1_s(x, i):
+#     return (-1) ** i * x ** (2 * i) / math.factorial(2 * i)
 
 
-def func1_y(x):
-    return math.cos(x)
+# def func1_y(x):
+#     return math.cos(x)
 
 
-calculation(0.1, 1, 0.1, func1_y, func1_s)
+# calculation(0.1, 1, 0.1, func1_y, func1_s)
 
 
-@lru_cache()
-def func3_s(x, i):
-    return  math.cos(i * x) / math.factorial(i)
+# @lru_cache()
+# def func3_s(x, i):
+#     return  math.cos(i * x) / math.factorial(i)
 
 
-def func3_y(x):
-    return math.e ** math.cos(x) * math.cos(math.sin(x))
+# def func3_y(x):
+#     return math.e ** math.cos(x) * math.cos(math.sin(x))
 
 
-calculation(0.1, 1, 0.1, func3_y, func3_s, i=1)
+# calculation(0.1, 1, 0.1, func3_y, func3_s, i=1)
 
 
 @lru_cache()
