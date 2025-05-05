@@ -1,6 +1,6 @@
 # Задание 1
 # Написать лямбду, которая удваивает свой аргумент: lambda x: x*2, и использовать её в функции map, чтобы удвоить все элементы в списке.
-# print(list(map(lambda x: x ** 2, range(1, 10))))
+# print(list(map(lambda x: x ** 2, range(1, 10)))) 
 
 
 # Задание 2
@@ -8,7 +8,6 @@
 # print(list(filter(lambda x: x > 0, range(-10, 10))))
 
 # Задание 3
-# Написать функцию arithmetic, принимающую 3 аргумента: первые 2 - числа, третий - операция, которая должна быть произведена над ними. Если третий аргумент +, сложить их; если —, то вычесть; * — умножить; / — разделить (первое на второе). В остальных случаях вернуть строку "Неизвестная операция". Использовать методы функционального программирования.
 # def arithmetic(a, b, operation):
 #     operations = {
 #         '+': lambda x, y: x + y,
@@ -18,12 +17,12 @@
 #     }
 #     return operations.get(operation, lambda x, y: "Неизвестная операция")(a, b)
 
-# print(arithmetic(5, 3, '+'))
-# print(arithmetic(5, 3, '-'))
-# print(arithmetic(5, 3, '*'))
-# print(arithmetic(5, 3, '/'))
-# print(arithmetic(5, 0, '/'))
-# print(arithmetic(5, 3, '^'))
+# print(arithmetic(20, 3, '+'))
+# print(arithmetic(20, 3, '-'))
+# print(arithmetic(20, 3, '*'))
+# print(arithmetic(20, 3, '/'))
+# print(arithmetic(20, 0, '/'))
+# print(arithmetic(20, 3, '^'))
 
 
 
@@ -37,12 +36,12 @@
 
 # Задание 5
 # Написать функцию square, принимающую 1 аргумент — сторону квадрата, и возвращающую 3 значения (например, с помощью кортежа): периметр квадрата, площадь квадрата и диагональ квадрата. Использовать методы функционального программирования.
-import math
+# import math
 
-square = lambda a: (
-    a * 4,
-    a ** 2,
-    a * math.sqrt(2)
-)
+# square = lambda a: (
+#     a * 4,
+#     a ** 2,
+#     a * math.sqrt(2)
+# )
 
-print(list(map(square, range(5, 10))))
+# print(square(5))
